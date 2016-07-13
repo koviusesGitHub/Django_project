@@ -1,0 +1,96 @@
+	
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load rango_template_tags %} 
+<link href="" rel="stylesheet" type="text/css" media="screen,projection" />
+<style>
+
+.menu {
+			    list-style-type: none;
+			    margin: 0;
+			    padding: 0;
+			    overflow: auto;
+			    background-color: #333;
+			    font-size: 19px;
+			    position: fixed;
+			    bottom: 0px;
+			    left: -5px;
+			    width: 120%;
+			 }
+
+			.menuli {
+			    float: left;
+			}
+
+			.menuli2 {
+			    display: block;
+			    color: white;
+			    text-align: center;
+			    padding: 14px 16px;
+			    text-decoration: none;
+			    transition: 0.5s;
+			}
+
+			.menuli2:hover {
+			    background-color: #FF5711;
+			}
+body {
+
+    background-image: url("{% static "images/rango.jpg" %}");
+    background-repeat: no-repeat;
+}
+
+			
+</style>
+<html>
+	<head lang = "en">
+		<meta charset="UTF-8"/>
+		<title>
+
+				Rango -
+				{% block title_block %}
+				How to Tango with Django!
+				{% endblock %}
+
+		</title>
+
+
+	</head>
+
+	<body>
+		<div>
+			{% block sidebar_block %}
+			{% get_category_list category %}
+			{% endblock %}
+		</div>
+
+
+		<div>
+		{% block body_block %}
+			This is body_block's default content.
+		{% endblock %}
+		</div>
+
+		
+		<div>
+			
+			<ul class="menu">
+				{% if user.is_authenticated %}
+				<li class="menuli"><a class="menuli2" href="{% url 'rango:add_category' %}">Add New Category</a></li>
+				<li class="menuli"><a class="menuli2" href="{% url 'rango:about' %}">About</a></li>
+				<li class="menuli"><a class="menuli2" href="{% url 'rango:restricted' %}">Restricted Page</a></li>				
+				<li class="menuli"><a class="menuli2" href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
+
+				{% else %}
+				<li class="menuli"><a class="menuli2" href="{% url 'rango:about' %}">About</a></li>
+				<li class="menuli"><a class="menuli2" class="active" href="{% url 'rango:index' %}">Index</a></li>		
+				<li class="menuli"><a class="menuli2" href="{% url 'registration_register' %}">Sign Up</a></li>
+				<li class="menuli"><a class="menuli2" href="{% url 'auth_login' %}">Login</a><li>
+				{% endif %}
+			</ul>
+
+		</div>
+
+	</body>
+</html>
+	

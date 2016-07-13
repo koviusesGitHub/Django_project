@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+<html>
+    
+    <head>
+        <title>Rango - About</title>
+    </head>
+    
+    {% block body_block %}
+        <h1>About Page</h1>
+        This tutorial has been put together by:<a href="{% url 'rango:kovi' %}"> Kovi</a>
+        
+        <!--	img src="{% static "images/about2.jpg" %}" alt="animal" --> 
+    {% endblock %}
+</html>

@@ -1,0 +1,68 @@
+<style>
+.dropbtn {
+    background-color: #444;
+    color: white;
+    padding: 16px;
+    padding-left: 16px;	
+    padding-right: 67px;			
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.dropdown {
+    position: fixed;
+    display: inline-block;
+    top: 8px;
+    left: 493px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #FF7A29  ;
+}
+</style>
+
+	
+
+
+<ul class="dropdown">
+<button class="dropbtn">Categories</button>
+	{% if cats %}
+	<div class="dropdown-content">
+		{% for c in cats %}
+		
+			{% if c == act_cat %}
+
+							<strong><a href="{% url 'rango:show_category' category_name_slug=c.slug %}">{{ c.name }}</a></strong>
+			{% else %}
+							<a href="{% url 'rango:show_category' category_name_slug=c.slug %}">{{ c.name }}</a>
+			{% endif %}
+		
+		{% endfor %}
+		</div>
+{% else %}
+	<li> <strong>There are no category present.</strong></li>
+{% endif %}
+</ul>
